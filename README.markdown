@@ -53,14 +53,10 @@ git clone https://github.com/fukamachi/re21
 (ql:quickload :re21)
 ```
 
-## Author
+## Credits
 
 * Eitaro Fukamachi (e.arrows@gmail.com)
 
-## Copyright
-
-Copyright (c) 2016 Eitaro Fukamachi (e.arrows@gmail.com)
-
 ## License
 
-Licensed under the Public Domain License.
+RE21 is free and unencumbered software released into the public domain.
