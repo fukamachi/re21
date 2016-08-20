@@ -34,7 +34,7 @@ RE21 is CL21's spin-off project that provides neat APIs for regular expressions.
 ;   #("2014" "01" "23")
 
 (re-replace #/a/g "Eitaro Fukamachi" "α")
-;=> "Eitαrow Fukαmαchi"
+;=> "Eitαro Fukαmαchi"
 ;   T
 ```
 
