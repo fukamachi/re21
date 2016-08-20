@@ -15,6 +15,10 @@ RE21 is CL21's spin-off project that provides neat APIs for regular expressions.
 ;=> "2016-01-06"
 ;   #("2016" "01" "06")
 
+(re-groups "(\\w+)\\s+(\\w+)\\s+(\\d{1,2})\\.(\\d{1,2})\\.(\\d{4})"
+           "Frank Zappa 21.12.1940")
+;=> ("Frank" "Zappa" "21" "12" "1940")
+
 (re-split "-" "2016-01-06")
 ;=> ("2016" "01" "06")
 

@@ -12,6 +12,7 @@
   (:import-from #:cl-syntax
                 #:define-package-syntax)
   (:export #:re-match
+           #:re-groups
            #:re-replace
            #:re-split))
 (in-package :re21)
@@ -21,6 +22,11 @@
   (etypecase re
     (function (apply re string keys))
     (string (apply #'ppcre:scan-to-strings re string keys))))
+
+(defun re-groups (re string &rest keys &key start end)
+  (declare (ignore start end))
+  (coerce (nth-value 1 (apply #'re-match re string keys))
+          'list))
 
 (defun re-replace (re string replacement &rest keys &key start end global)
   (declare (ignore start end))
