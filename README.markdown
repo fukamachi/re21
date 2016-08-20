@@ -1,5 +1,7 @@
 # RE21
 
+[![Quicklisp dist](http://quickdocs.org/badge/re21.svg)](http://quickdocs.org/re21/)
+
 RE21 is CL21's spin-off project that provides neat APIs for regular expressions.
 
 ## Usage
