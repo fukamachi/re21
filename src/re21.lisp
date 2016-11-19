@@ -13,6 +13,7 @@
                 #:define-package-syntax)
   (:export #:re-match
            #:re-groups
+           #:re-case
            #:re-replace
            #:re-split))
 (in-package :re21)
@@ -28,6 +29,23 @@
   (let ((res (nth-value 1 (apply #'re-match re string keys))))
     (values (coerce res 'list)
             (not (null res)))))
+
+(defmacro re-case (text &body clauses)
+  (let ((re-case-block (gensym "RE-CASE-BLOCK"))
+        (matches (gensym "MATCHES"))
+        (successp (gensym "SUCCESSP"))
+        (g-text (gensym "TEXT")))
+    `(let ((,g-text ,text))
+       (declare (ignorable ,g-text))
+       (block ,re-case-block
+         ,@(loop for (re args . body) in clauses
+                 if (eq re 'otherwise)
+                   collect `(progn ,args ,@body)
+                 else
+                   collect `(multiple-value-bind (,matches ,successp) (re-groups ,re ,g-text)
+                              (when ,successp
+                                (destructuring-bind (,@args) ,matches
+                                  (return-from ,re-case-block (progn ,@body))))))))))
 
 (defun re-replace (re string replacement &rest keys &key start end global)
   (declare (ignore start end))
