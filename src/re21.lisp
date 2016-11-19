@@ -25,8 +25,9 @@
 
 (defun re-groups (re string &rest keys &key start end)
   (declare (ignore start end))
-  (coerce (nth-value 1 (apply #'re-match re string keys))
-          'list))
+  (let ((res (nth-value 1 (apply #'re-match re string keys))))
+    (values (coerce res 'list)
+            (not (null res)))))
 
 (defun re-replace (re string replacement &rest keys &key start end global)
   (declare (ignore start end))
